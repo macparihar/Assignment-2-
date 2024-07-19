@@ -1,0 +1,86 @@
+<form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+    <label for="id">ID:</label>
+    <input id="id" type="number" formControlName="id" placeholder="ID">
+    <div *ngIf="personForm.controls['id'].invalid && personForm.controls['id'].touched" class="invalidMessage">
+      <div *ngIf="personForm.controls['id'].hasError('required')">
+        Please enter an ID
+      </div>
+      <div *ngIf="personForm.controls['id'].hasError('min') || personForm.controls['id'].hasError('max')">
+        ID must be a number between 1 and 100
+      </div>
+    </div>
+    <br><br>
+  
+    <label for="first-name">First Name:</label>
+    <input id="first-name" type="text" formControlName="firstName" placeholder="First Name">
+    <div *ngIf="personForm.controls['firstName'].invalid && personForm.controls['firstName'].touched" class="invalidMessage">
+      <div *ngIf="personForm.controls['firstName'].hasError('required')">
+        Please enter a first name
+      </div>
+      <div *ngIf="personForm.controls['firstName'].hasError('pattern')">
+        Must be only alphabetical
+      </div>
+    </div>
+    <br><br>
+  
+    <label for="last-name">Last Name:</label>
+    <input id="last-name" type="text" formControlName="lastName" placeholder="Last Name">
+    <div *ngIf="personForm.controls['lastName'].invalid && personForm.controls['lastName'].touched" class="invalidMessage">
+      <div *ngIf="personForm.controls['lastName'].hasError('required')">
+        Please enter a last name
+      </div>
+      <div *ngIf="personForm.controls['lastName'].hasError('pattern')">
+        Must be only alphabetical
+      </div>
+    </div>
+    <br><br>
+  
+    <label for="address">Address:</label>
+    <input id="address" type="text" formControlName="address" placeholder="Address">
+    <br><br>
+  
+    <label for="city">City:</label>
+    <input id="city" type="text" formControlName="city" placeholder="City">
+    <div *ngIf="personForm.controls['city'].invalid && personForm.controls['city'].touched" class="invalidMessage">
+      <div *ngIf="personForm.controls['city'].hasError('required')">
+        Please enter a city
+      </div>
+      <div *ngIf="personForm.controls['city'].hasError('pattern')">
+        Must be only alphabetical
+      </div>
+    </div>
+    <br><br>
+  
+    <label for="province">Province:</label>
+    <select id="province" formControlName="province">
+      <option *ngFor="let province of provinces" [value]="province">{{ province }}</option>
+    </select>
+    <div *ngIf="personForm.controls['province'].invalid && personForm.controls['province'].touched" class="invalidMessage">
+      <div *ngIf="personForm.controls['province'].hasError('required')">
+        Please select a province
+      </div>
+      <div *ngIf="personForm.controls['province'].hasError('invalidProvince')">
+        Province must be a valid Canadian province or territory
+      </div>
+    </div>
+    <br><br>
+  
+    <label for="phone">Phone number:</label>
+    <input id="phone" type="text" formControlName="phone" placeholder="(123) 456-7890">
+    <div *ngIf="personForm.controls['phone'].invalid && personForm.controls['phone'].touched" class="invalidMessage">
+      <div *ngIf="personForm.controls['phone'].hasError('required')">
+        Please enter a phone number
+      </div>
+      <div *ngIf="personForm.controls['phone'].hasError('pattern')">
+        Phone number must be in the format (123) 456-7890
+      </div>
+    </div>
+    <br><br>
+  
+    <label for="lastUpdated">Last Updated:</label>
+    <input id="lastUpdated" type="date" formControlName="lastUpdated">
+    <br><br>
+  
+    <button type="submit" [disabled]="!personForm.valid">Submit</button>
+  </form>
+
